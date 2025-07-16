@@ -59,15 +59,17 @@
         />
         <select id="department" class="form-select my-2" required>
           <option value="" data-i18n="login.depDefault"></option>
-          <option>MP&L</option><option>MH</option>
-          <option>W/H</option><option>ISB</option>
+          	<option>MP&L</option>
+	<option>MH</option>
+          	<option>W/H</option>
+	<option>ISB</option>
         </select>
         <select id="team" class="form-select my-2" required>
           <option value="" data-i18n="login.teamDefault"></option>
-          <option>Feed Call</option>
-          <option>Replenish Call</option>
-          <option>Replenish Auto Call</option>
-          <option>Feed TCF</option>
+          	<option>Feed Call</option>
+          	<option>Replenish Call</option>
+          	<option>Replenish Auto Call</option>
+          	<option>Feed TCF</option>
         </select>
         <button
           type="submit"
@@ -244,33 +246,259 @@
     }
 
     // 2-language question bank
-    const questions = shuffle([
-      {
-        q: { th: "รถโฟร์คลิฟท์คืออะไร?", en: "What is a forklift?" },
-        a: {
-          th: ["อุปกรณ์สำหรับเคลื่อนย้ายสินค้า","ยานพาหนะ","เครื่องมือชนิดหนึ่ง","เครื่องจักรใช้ยกสินค้าแทนคน"],
-          en: ["Equipment for moving goods","A vehicle","A type of tool","A machine for lifting goods"]
-        },
-        c: 3
-      },
-      {
-        q: { th: "ใครเป็นผู้ตรวจเช็ครถโฟร์คลิฟท์ ประจำวัน?", en: "Who checks the forklift daily?" },
-        a: {
-          th: ["จป.","PE","พนักงานขับรถโฟร์คลิฟท์","หัวหน้างาน"],
-          en: ["Safety officer","PE","Forklift driver","Supervisor"]
-        },
-        c: 2
-      },
-      {
-        q: { th: "ถ้าพบสิ่งผิดปกติกับรถ ควรทำอย่างไร?", en: "What should you do if the forklift is abnormal?" },
-        a: {
-          th: ["แจ้งหัวหน้าแล้วใช้รถต่อ","ซ่อมเอง","แจ้งหัวหน้าและติดป้ายเตือน","ใช้ต่อโดยไม่แจ้ง"],
-          en: ["Tell supervisor and continue","Fix it yourself","Tag out and inform supervisor","Ignore and keep using"]
-        },
-        c: 2
-      }
-      // … เติมให้ครบ 30 ข้อ
-    ]);
+const questions = shuffle([
+  {
+    q: { th: "รถโฟร์คลิฟท์คืออะไร?", en: "What is a forklift?" },
+    a: {
+      th: ["อุปกรณ์สำหรับเคลื่อนย้ายสินค้า", "ยานพาหนะ", "เครื่องมือชนิดหนึ่ง", "เครื่องจักรใช้ยกสินค้าแทนคน"],
+      en: ["Equipment for moving goods", "A vehicle", "A type of tool", "A machine for lifting goods"]
+    },
+    c: 3
+  },
+  {
+    q: { th: "ใครเป็นผู้ตรวจเช็ครถโฟร์คลิฟท์ ประจำวัน?", en: "Who checks the forklift daily?" },
+    a: {
+      th: ["จป.", "PE", "พนักงานขับรถโฟร์คลิฟท์", "หัวหน้างาน"],
+      en: ["Safety officer", "PE", "Forklift driver", "Supervisor"]
+    },
+    c: 2
+  },
+  {
+    q: { th: "ถ้าพบสิ่งผิดปกติกับรถ ควรทำอย่างไร?", en: "What should you do if the forklift is abnormal?" },
+    a: {
+      th: ["แจ้งหัวหน้าแล้วใช้รถต่อ", "ซ่อมเอง", "แจ้งหัวหน้าและติดป้ายเตือน", "ใช้ต่อโดยไม่แจ้ง"],
+      en: ["Tell supervisor and continue", "Fix it yourself", "Tag out and inform supervisor", "Ignore and keep using"]
+    },
+    c: 2
+  },
+  {
+    q: { th: "ก่อนเคลื่อนรถควรปรับงาอย่างไร?", en: "How should you adjust the forks before moving?" },
+    a: {
+      th: ["เอียงตามใจ", "สูงจากพื้น 50 ซม. เอนเข้า", "สูง 15-20 ซม. เอนเข้าเล็กน้อย", "สูง 15-20 ซม. เอนไปข้างหน้า"],
+      en: ["Any angle", "50 cm high, tilt in", "15-20 cm high, slight inward tilt", "15-20 cm high, tilt outward"]
+    },
+    c: 2
+  },
+  {
+    q: { th: "จุดศูนย์ถ่วงของรถอยู่ที่ใด?", en: "Where is the forklift's center of gravity?" },
+    a: {
+      th: ["กึ่งกลางล้อหน้า", "กึ่งกลางรถ", "กึ่งกลางล้อหลัง", "กึ่งกลางงา"],
+      en: ["Front axle", "Middle of the vehicle", "Rear axle", "Fork center"]
+    },
+    c: 0
+  },
+  {
+    q: { th: "ลักษณะใดบรรทุกได้มากที่สุด?", en: "Which method holds the most load?" },
+    a: {
+      th: ["กลางงา", "ชิดโคนงา", "ปลายงา", "ตรงไหนก็ได้"],
+      en: ["Middle of forks", "Close to base", "Tip of forks", "Anywhere"]
+    },
+    c: 1
+  },
+  {
+    q: { th: "ถอยหลังขึ้นทางลาดควรมี?", en: "When reversing uphill, you should have?" },
+    a: {
+      th: ["คนเดินนำทาง", "ไฟหน้าเปิด", "เสียงเตือน", "ทุกข้อถูก"],
+      en: ["Guide walker", "Headlight on", "Warning sound", "All of the above"]
+    },
+    c: 3
+  },
+  {
+    q: { th: "ทางแยกควร?", en: "At intersections you should?" },
+    a: {
+      th: ["ขับผ่านเร็ว", "ชะลอแล้วผ่าน", "บีบแตรก่อนผ่าน", "หยุดและมองซ้ายขวา"],
+      en: ["Drive fast", "Slow and pass", "Honk before passing", "Stop and look both ways"]
+    },
+    c: 3
+  },
+  {
+    q: { th: "ข้อใดผิดกฎความปลอดภัย?", en: "Which violates safety rules?" },
+    a: {
+      th: ["ขับเร็ว", "ใช้โทรศัพท์", "ยกคนขึ้นสูง", "ทุกข้อถูก"],
+      en: ["Speeding", "Using phone", "Lifting people", "All of the above"]
+    },
+    c: 3
+  },
+  {
+    q: { th: "ความเร็วที่ปลอดภัยคือ?", en: "What is a safe forklift speed?" },
+    a: {
+      th: ["5 กม./ชม.", "10 กม./ชม.", "15 กม./ชม.", "ไม่เกิน 10 กม./ชม."],
+      en: ["5 km/h", "10 km/h", "15 km/h", "Under 10 km/h"]
+    },
+    c: 3
+  },
+  {
+    q: { th: "ก่อนเริ่มงานควร?", en: "Before starting work you should?" },
+    a: {
+      th: ["อุ่นเครื่อง", "ใช้ทันที", "ตรวจสภาพรถ", "ล้างรถก่อน"],
+      en: ["Warm up", "Use immediately", "Inspect vehicle", "Wash vehicle"]
+    },
+    c: 2
+  },
+  {
+    q: { th: "ต้องจอดรถอย่างไร?", en: "How should the forklift be parked?" },
+    a: {
+      th: ["งาชิดพื้น ดับเครื่อง ดึงเบรกมือ", "งาเปิดไว้ ขับต่อได้", "งาชี้ขึ้น เบรกเท้าเท่านั้น", "งาลอยจากพื้น"],
+      en: ["Forks down, engine off, brake on", "Forks up, keep going", "Forks up, use only foot brake", "Forks floating"]
+    },
+    c: 0
+  },
+  {
+    q: { th: "พนักงานขับรถโฟร์คลิฟท์ที่ดีควร?", en: "What should a good forklift operator do?" },
+    a: {
+      th: ["รู้กฎความปลอดภัย", "รู้วิธีตรวจสภาพ", "ผ่านการอบรม", "ทุกข้อถูก"],
+      en: ["Know safety rules", "Know inspection steps", "Certified", "All of the above"]
+    },
+    c: 3
+  },
+  {
+    q: { th: "ข้อใดปลอดภัยที่สุด?", en: "Which is the safest?" },
+    a: {
+      th: ["ยกของเกินพิกัด", "ขับใกล้เพื่อนร่วมงาน", "เว้นระยะ 3 เมตร", "ขับเร็ว"],
+      en: ["Overload", "Drive near people", "Keep 3m distance", "Speeding"]
+    },
+    c: 2
+  },
+  {
+    q: { th: "ควรเว้นระยะจากรถคันหน้าเท่าใด?", en: "How far should you stay behind another forklift?" },
+    a: {
+      th: ["1 เมตร", "2 เมตร", "3 เมตร", "ไม่ต้องเว้น"],
+      en: ["1 meter", "2 meters", "3 meters", "No distance needed"]
+    },
+    c: 2
+  },
+  {
+    q: { th: "สัญญาณเตือนขณะถอยหลังคือ?", en: "What is the reversing signal?" },
+    a: {
+      th: ["เสียงบี๊บ", "ไฟถอยหลัง", "เสียงและไฟ", "ไม่มี"],
+      en: ["Beep", "Reverse light", "Beep and light", "None"]
+    },
+    c: 2
+  },
+  {
+    q: { th: "ก่อนใช้รถควรตรวจสอบอะไร?", en: "What should you inspect before using a forklift?" },
+    a: {
+      th: ["ยาง", "เบรก", "ไฟ", "ทุกข้อ"],
+      en: ["Tires", "Brakes", "Lights", "All"]
+    },
+    c: 3
+  },
+  {
+    q: { th: "ถ้ารถเสียกลางทางควร?", en: "If the forklift breaks down, you should?" },
+    a: {
+      th: ["ดึงเข้าข้างทางและแจ้ง", "ขับต่อ", "จอดทิ้งไว้", "โทรหาเพื่อน"],
+      en: ["Pull aside and report", "Keep driving", "Abandon it", "Call a friend"]
+    },
+    c: 0
+  },
+  {
+    q: { th: "น้ำมันรั่วควร?", en: "What if you see a fuel leak?" },
+    a: {
+      th: ["แจ้งทันที", "เช็ดแล้วใช้ต่อ", "ใช้ผ้าอุด", "ปล่อยไว้"],
+      en: ["Report immediately", "Wipe and use", "Block with cloth", "Ignore"]
+    },
+    c: 0
+  },
+  {
+    q: { th: "พบเพื่อนเล่นกับรถควร?", en: "If you see someone misusing the forklift, you should?" },
+    a: {
+      th: ["เตือนทันที", "เฉยๆ", "แจ้งหัวหน้า", "ก.และค. ถูก"],
+      en: ["Warn immediately", "Ignore", "Inform supervisor", "A and C"]
+    },
+    c: 3
+  },
+  {
+    q: { th: "จอดรถบนทางลาดควร?", en: "How to park on a slope?" },
+    a: {
+      th: ["ใช้เบรกมือ", "เอียงล้อเข้าขอบ", "เปิดไฟฉุกเฉิน", "ทุกข้อถูก"],
+      en: ["Use handbrake", "Turn wheels to curb", "Use hazard lights", "All of the above"]
+    },
+    c: 3
+  },
+  {
+    q: { th: "ควรใช้เสียงสัญญาณเมื่อ?", en: "When should you use the horn?" },
+    a: {
+      th: ["เข้าโค้ง", "ใกล้ทางแยก", "มีคนเดิน", "ทุกข้อ"],
+      en: ["Turning", "At junctions", "Near pedestrians", "All of the above"]
+    },
+    c: 3
+  },
+  {
+    q: { th: "ทางเดินแคบควร?", en: "How to drive in narrow aisle?" },
+    a: {
+      th: ["ขับช้า", "บีบแตร", "มองทาง", "ทุกข้อ"],
+      en: ["Drive slowly", "Honk", "Look ahead", "All of the above"]
+    },
+    c: 3
+  },
+  {
+    q: { th: "ขับผ่านทางแยกควร?", en: "How to cross an intersection?" },
+    a: {
+      th: ["เร่งเครื่อง", "ชะลอและมอง", "บีบแตรเฉยๆ", "หยุดกลางทาง"],
+      en: ["Accelerate", "Slow and look", "Only honk", "Stop in middle"]
+    },
+    c: 1
+  },
+  {
+    q: { th: "การ Take a SEAT หมายถึง?", en: "What is Take a SEAT?" },
+    a: {
+      th: [
+        "สบตา-หยุด-รับรู้-ขอบคุณ",
+        "หยุด-สบตา-รับรู้-ขอบคุณ",
+        "หยุด-รับรู้-สบตา-ขอบคุณ",
+        "ขอบคุณ-สบตา-หยุด-รับรู้"
+      ],
+      en: [
+        "Eye contact - stop - acknowledge - thank",
+        "Stop - eye contact - acknowledge - thank",
+        "Stop - acknowledge - eye contact - thank",
+        "Thank - eye contact - stop - acknowledge"
+      ]
+    },
+    c: 1
+  },
+  {
+    q: { th: "ป้ายเตือนบนรถหมายถึง?", en: "Warning labels on forklift mean?" },
+    a: {
+      th: ["ต้องปฏิบัติตาม", "แล้วแต่ผู้ขับ", "ไม่จำเป็น", "ดูเฉพาะที่อยากดู"],
+      en: ["Must follow", "Up to driver", "Not necessary", "View optional"]
+    },
+    c: 0
+  },
+  {
+    q: { th: "เมื่อยกของสูงขึ้น จะเกิด?", en: "What happens when you lift the load high?" },
+    a: {
+      th: ["ทรงตัวดีขึ้น", "ทรงตัวแย่ลง", "ไม่เปลี่ยน", "กลับหัว"],
+      en: ["Better balance", "Worse balance", "No change", "Flip over"]
+    },
+    c: 1
+  },
+  {
+    q: { th: "เมื่อขับใกล้คนเดินเท้าควร?", en: "When near pedestrians, you should?" },
+    a: {
+      th: ["ชะลอ", "หยุด", "ให้ทาง", "ทุกข้อ"],
+      en: ["Slow", "Stop", "Yield", "All of the above"]
+    },
+    c: 3
+  },
+  {
+    q: { th: "ต้องทำอะไรทุกครั้งก่อนขับ?", en: "What must you always do before driving?" },
+    a: {
+      th: ["เช็คลมยาง", "ตรวจน้ำมัน", "เช็คเบรก", "ทุกข้อ"],
+      en: ["Check tires", "Check oil", "Check brakes", "All of the above"]
+    },
+    c: 3
+  },
+  {
+    q: { th: "ถ้าพบสิ่งกีดขวางทาง ควรทำอย่างไร?", en: "What should you do if you encounter an obstacle on the path?" },
+    a: {
+      th: ["ขับผ่านไป", "หยุดและเคลียร์ทาง", "บีบแตรก่อน", "เลี้ยวหลบ"],
+      en: ["Drive through", "Stop and clear", "Honk before", "Detour"]
+    },
+    c: 1
+  }
+]);
+
 
     // localStorage: save & load & clear
     function saveState() {
@@ -374,7 +602,7 @@
       const used = Math.floor((Date.now() - startTime)/1000);
       const m    = Math.floor(used/60), s = used % 60;
       const base = `${userData.name} (${userData.department} - ${userData.team}) ได้ ${score}/${questions.length}`;
-      const pf   = score>=36 ? translations[lang].passed : translations[lang].failed;
+      const pf   = score>=26 ? translations[lang].passed : translations[lang].failed;
 
       resultEl.innerHTML = `
         ${base}<br>
