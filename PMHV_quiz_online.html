@@ -1,0 +1,2000 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  
+  <title>แบบทดสอบการขับรถโฟร์คลิฟท์อย่างถูกวิธีและปลอดภัย - Ford Motor Company</title>
+  
+  <!-- PWA Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Ford Quiz">
+  <meta name="theme-color" content="#003f7f">
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* Force Light Mode Override */
+    * {
+      color-scheme: light !important;
+    }
+
+    body {
+      background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%) !important;
+      color: #212529 !important;
+    }
+
+    .card-style {
+      background: white !important;
+      color: #212529 !important;
+    }
+
+    .question-card {
+      background: white !important;
+      color: #212529 !important;
+    }
+
+    .question-text {
+      color: #212529 !important;
+    }
+
+    .answer-text {
+      color: #212529 !important;
+    }
+
+    .form-label {
+      color: #212529 !important;
+    }
+
+    .summary-card {
+      background: white !important;
+      color: #212529 !important;
+    }
+
+    :root {
+      --primary-color: #003566;
+      --secondary-color: #0077be;
+      --accent-color: #00b4d8;
+      --success-color: #28a745;
+      --warning-color: #ffc107;
+      --danger-color: #dc3545;
+      --light-bg: #f8f9fa;
+      --border-radius: 12px;
+      --shadow: 0 4px 15px rgba(0,0,0,0.1);
+      --shadow-hover: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body { 
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: 'Prompt', sans-serif;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      line-height: 1.5;
+    }
+
+    .main-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 10px;
+      padding-top: max(10px, env(safe-area-inset-top));
+      padding-bottom: max(10px, env(safe-area-inset-bottom));
+    }
+
+    .card-style {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 1rem;
+      margin-bottom: 0.5rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      max-width: 100%;
+      width: 100%;
+      min-height: auto;
+    }
+
+    .card-style:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .header-section {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .header-section::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+      border-radius: 2px;
+    }
+
+    .main-title {
+      color: var(--primary-color);
+      font-weight: 700;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .main-subtitle {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+
+    .form-control, .form-select {
+      border-radius: 8px;
+      border: 2px solid #e9ecef;
+      padding: 12px 14px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.9);
+      height: auto;
+      min-height: 44px;
+    }
+
+    .form-control:focus, .form-select:focus {
+      border-color: var(--secondary-color);
+      box-shadow: 0 0 0 0.2rem rgba(0, 119, 190, 0.15);
+      background: white;
+      outline: none;
+    }
+
+    .form-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #333;
+    }
+
+    .btn {
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      min-height: 44px;
+      touch-action: manipulation;
+      cursor: pointer;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+    }
+
+    .btn-success {
+      background: linear-gradient(135deg, var(--success-color), #20c997);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, #6c757d, #495057);
+      color: white;
+    }
+
+    .btn-info {
+      background: linear-gradient(135deg, #17a2b8, #138496);
+      color: white;
+    }
+
+    .progress-section {
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .progress-text {
+      font-weight: 600;
+      color: var(--primary-color);
+      font-size: 1rem;
+    }
+
+    .timer {
+      background: linear-gradient(135deg, var(--danger-color), #e74c3c);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 3px 10px rgba(220, 53, 69, 0.3);
+    }
+
+    .timer.warning {
+      background: linear-gradient(135deg, var(--warning-color), #e0a800);
+      animation: pulse 1s infinite;
+    }
+
+    .timer.danger {
+      background: linear-gradient(135deg, #e74c3c, #c0392b);
+      animation: pulse 0.5s infinite;
+    }
+
+    .progress {
+      height: 10px;
+      border-radius: 8px;
+      background: rgba(233, 236, 239, 0.5);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-bar {
+      background: linear-gradient(90deg, var(--success-color), var(--secondary-color));
+      transition: width 0.3s ease;
+      position: relative;
+      height: 100%;
+    }
+
+    .question-card {
+      background: linear-gradient(145deg, #ffffff, #f8f9fa);
+      border-left: 4px solid var(--primary-color);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .question-number {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 15px;
+      box-shadow: 0 3px 12px rgba(0, 53, 102, 0.2);
+    }
+
+    .question-text {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #333;
+      line-height: 1.5;
+      margin: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .question-image {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin: 15px 0;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .question-image:hover {
+      transform: scale(1.02);
+    }
+
+    .answers-container {
+      margin: 20px 0;
+    }
+
+    .answer-button {
+      background: white;
+      border: 2px solid #e9ecef;
+      border-radius: 10px;
+      padding: 15px 16px;
+      margin: 8px 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: left;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      min-height: 60px;
+      touch-action: manipulation;
+    }
+
+    .answer-button:hover {
+      border-color: var(--secondary-color);
+      background: linear-gradient(135deg, #f8f9ff, white);
+      transform: translateX(4px);
+      box-shadow: 0 5px 20px rgba(0, 119, 190, 0.1);
+    }
+
+    .answer-button:disabled {
+      cursor: not-allowed;
+    }
+
+    .answer-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .answer-letter {
+      background: var(--secondary-color);
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .answer-text {
+      flex: 1;
+      font-size: 15px;
+      line-height: 1.4;
+      color: #333;
+    }
+
+    .correct {
+      background: linear-gradient(135deg, #d1fae5, #a7f3d0) !important;
+      border-color: var(--success-color) !important;
+      color: #065f46 !important;
+    }
+
+    .correct .answer-letter {
+      background: var(--success-color);
+    }
+
+    .incorrect {
+      background: linear-gradient(135deg, #fee2e2, #fecaca) !important;
+      border-color: var(--danger-color) !important;
+      color: #991b1b !important;
+    }
+
+    .incorrect .answer-letter {
+      background: var(--danger-color);
+    }
+
+    .summary-card {
+      text-align: center;
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      margin: 1rem 0;
+      box-shadow: var(--shadow);
+    }
+
+    .result-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .result-icon {
+      font-size: 3rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .result-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+
+    .score-display {
+      background: linear-gradient(135deg, var(--light-bg), white);
+      border-radius: 10px;
+      padding: 1.2rem;
+      margin: 1.2rem 0;
+      border-left: 4px solid var(--secondary-color);
+    }
+
+    .wrong-answer {
+      background: linear-gradient(135deg, #fff3cd, #fef3bd);
+      border: 1px solid #ffeaa7;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+      text-align: left;
+      border-left: 4px solid var(--warning-color);
+      font-size: 0.9rem;
+      line-height: 1.3;
+    }
+
+    .info-section {
+      background: rgba(0, 119, 190, 0.1);
+      border: 1px solid rgba(0, 119, 190, 0.2);
+      border-radius: 8px;
+      padding: 15px;
+      margin-top: 15px;
+    }
+
+    .info-title {
+      color: var(--primary-color);
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+    }
+
+    .hidden { 
+      display: none !important; 
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+
+    @keyframes fade-in-up {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fade-in-up 0.5s ease-out;
+    }
+
+    /* Certificate Styles */
+    #certificateTemplate {
+      width: 210mm;
+      height: 297mm;
+      margin: 20px auto;
+      background: white;
+      font-family: 'Prompt', sans-serif;
+      box-sizing: border-box;
+      position: relative;
+      overflow: visible;
+      page-break-inside: avoid;
+      padding: 0;
+      border: none;
+    }
+
+    .certificate-container {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+      border: 2mm solid #003566;
+      border-radius: 3mm;
+      padding: 12mm;
+      position: relative;
+      font-family: 'Prompt', sans-serif;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin: 0;
+      min-height: calc(297mm - 4mm);
+    }
+
+    .cert-header {
+      text-align: center;
+      margin-bottom: 8mm;
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
+    }
+
+    .company-name {
+      font-size: 14pt;
+      font-weight: 700;
+      color: #003566;
+      letter-spacing: 0.4pt;
+    }
+
+    .cert-title {
+      font-size: 20pt;
+      font-weight: 700;
+      color: #003566;
+      text-align: center;
+      margin: 5mm 0 2mm 0;
+      letter-spacing: 0.8pt;
+      line-height: 1.2;
+    }
+
+    .cert-subtitle {
+      font-size: 12pt;
+      font-weight: 600;
+      color: #0066cc;
+      text-align: center;
+      margin-bottom: 6mm;
+    }
+
+    .cert-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 0;
+      padding: 2mm 0;
+    }
+
+    .program-title {
+      text-align: center;
+      margin: 6mm 0;
+      padding: 5mm;
+      background: linear-gradient(90deg, #f8f9fa 0%, #e9ecef 50%, #f8f9fa 100%);
+      border-radius: 3mm;
+      border-left: 2mm solid #0066cc;
+    }
+
+    .en-title {
+      font-size: 16pt;
+      font-weight: 700;
+      color: #003566;
+      margin-bottom: 1mm;
+      line-height: 1.2;
+    }
+
+    .th-title {
+      font-size: 12pt;
+      font-weight: 600;
+      color: #0066cc;
+      line-height: 1.2;
+    }
+
+    .recipient-section {
+      text-align: center;
+      margin: 8mm 0;
+    }
+
+    .cert-label {
+      font-size: 10pt;
+      color: #666;
+      margin: 2mm 0;
+      line-height: 1.3;
+    }
+
+    .recipient-name {
+      font-size: 24pt;
+      font-weight: 700;
+      color: #003566;
+      margin: 6mm 0;
+      border-bottom: 1.5mm solid #0066cc;
+      padding-bottom: 2mm;
+      display: inline-block;
+      min-width: 80mm;
+      line-height: 1.2;
+    }
+
+    .details-grid {
+      margin: 8mm 0;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2mm 4mm;
+      margin: 1.5mm 0;
+      background: rgba(0,102,204,0.05);
+      border-radius: 2mm;
+      border-left: 1.5mm solid #0066cc;
+    }
+
+    .detail-row .label {
+      font-weight: 600;
+      color: #003566;
+      flex: 1;
+      font-size: 9pt;
+    }
+
+    .detail-row .value {
+      font-weight: 700;
+      color: #000;
+      flex: 1;
+      text-align: right;
+      font-size: 9pt;
+    }
+
+    .cert-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-top: 8mm;
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
+    }
+
+    .footer-left {
+      text-align: center;
+    }
+
+    .signature-line {
+      width: 40mm;
+      border-bottom: 1mm solid #003566;
+      margin-bottom: 2mm;
+    }
+
+    .signature-label {
+      font-size: 8pt;
+      color: #666;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .issue-date, .validity {
+      font-size: 8pt;
+      color: #666;
+      margin: 0.5mm 0;
+      line-height: 1.2;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .main-container {
+        padding: 8px;
+        align-items: flex-start;
+        min-height: 100vh;
+      }
+      
+      .card-style {
+        margin: 5px 0;
+        padding: 1rem;
+        border-radius: 10px;
+      }
+      
+      .main-title {
+        font-size: 1.3rem;
+      }
+      
+      .main-subtitle {
+        font-size: 0.85rem;
+      }
+      
+      .question-text {
+        font-size: 1rem;
+        line-height: 1.4;
+      }
+      
+      .progress-header {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        gap: 10px;
+      }
+      
+      .timer {
+        align-self: center;
+        margin-top: 5px;
+        padding: 8px 16px;
+        font-size: 1rem;
+      }
+      
+      .btn {
+        padding: 14px 20px;
+        font-size: 16px;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      
+      .answer-button {
+        padding: 16px 12px;
+        margin-bottom: 12px;
+        min-height: 70px;
+      }
+      
+      .answer-content {
+        gap: 10px;
+      }
+      
+      .answer-letter {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+      }
+      
+      .answer-text {
+        font-size: 14px;
+        line-height: 1.3;
+      }
+      
+      /* Certificate mobile adjustments */
+      #certificateTemplate {
+        width: 100vw !important;
+        height: auto !important;
+        min-height: 100vh !important;
+        transform: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow-x: hidden;
+      }
+      
+      .certificate-container {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 100vh !important;
+        padding: 10px !important;
+        border: 2px solid #003566 !important;
+        border-radius: 5px !important;
+        margin: 0 !important;
+        font-size: 12px !important;
+      }
+      
+      .cert-title {
+        font-size: 16pt !important;
+      }
+      
+      .recipient-name {
+        font-size: 18pt !important;
+        min-width: 60mm !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+    <div class="container">
+
+      <!-- Login Page -->
+      <div id="loginPage" class="card-style fade-in-up">
+        <div class="header-section">
+          <h1 class="main-title">
+            <i class="fa-solid fa-truck"></i>
+            แบบทดสอบการขับรถโฟร์คลิฟท์
+          </h1>
+          <p class="main-subtitle">อย่างถูกวิธีและปลอดภัย</p>
+        </div>
+        
+        <form id="loginForm">
+          <div class="mb-3">
+            <label for="name" class="form-label">
+              <i class="fas fa-user"></i> ชื่อ - นามสกุล
+            </label>
+            <input type="text" id="name" class="form-control" placeholder="กรอกชื่อ-นามสกุล" required/>
+          </div>
+          
+          <div class="mb-3">
+            <label for="department" class="form-label">
+              <i class="fas fa-building"></i> แผนก
+            </label>
+            <select id="department" class="form-select" required>
+              <option value="">เลือกแผนก</option>
+              <option>MP&L - MH</option>
+              <option>MP&L - W/H</option>
+              <option>Other teams</option>
+            </select>
+          </div>
+          
+          <div class="mb-3">
+            <label for="team" class="form-label">
+              <i class="fas fa-users"></i> ทีม
+            </label>
+            <select id="team" class="form-select" required>
+              <option value="">เลือกทีม</option>
+              <option>Feed Call</option>
+              <option>Replenish Call</option>
+              <option>Replenish Auto Call</option>
+              <option>Feed WH&TAN and Unload</option>
+              <option>RD and GN</option>
+              <option>General Store</option>
+            </select>
+          </div>
+          
+          <div class="mb-4">
+            <label for="type" class="form-label">
+              <i class="fas fa-certificate"></i> ประเภท
+            </label>
+            <select id="type" class="form-select" required>
+              <option value="">เลือกประเภท</option>
+              <option>New License</option>
+              <option>Refresher training</option>
+            </select>
+          </div>
+          
+          <button type="submit" class="btn btn-primary w-100">
+            <i class="fas fa-play"></i>
+            เริ่มทำแบบทดสอบ
+          </button>
+        </form>
+        
+        <div class="info-section">
+          <div class="info-title">
+            <i class="fas fa-info-circle"></i>
+            ข้อมูลการทดสอบ
+          </div>
+          <div class="row text-center">
+            <div class="col-md-4 mb-2">
+              <strong>จำนวนข้อสอบ:</strong><br>
+              <span id="totalQuestions" class="text-primary">40</span> ข้อ
+            </div>
+            <div class="col-md-4 mb-2">
+              <strong>เวลาต่อข้อ:</strong><br>
+              <span class="text-warning">30 วินาที</span>
+            </div>
+            <div class="col-md-4 mb-2">
+              <strong>เกณฑ์ผ่าน:</strong><br>
+              <span id="passingScore" class="text-success">32</span> ข้อ (80%)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quiz Page -->
+      <div id="quizPage" class="hidden">
+        <div class="card-style fade-in-up">
+          <!-- Progress Section -->
+          <div class="progress-section">
+            <div class="progress-header">
+              <div class="progress-text">
+                <i class="fas fa-tasks"></i>
+                ความคืบหน้า: <span id="progressText">1/40</span>
+              </div>
+              <div id="timer" class="timer">
+                <i class="fas fa-clock"></i>
+                <span>30s</span>
+              </div>
+            </div>
+            <div class="progress">
+              <div id="progressBar" class="progress-bar" style="width: 2.5%"></div>
+            </div>
+          </div>
+
+          <!-- Question Section -->
+          <div id="questionContainer">
+            <div class="question-card">
+              <div class="question-number">
+                <i class="fas fa-question-circle"></i>
+                <span>ข้อ 1</span>
+              </div>
+              <div id="questionText" class="question-text">กำลังโหลดคำถาม...</div>
+            </div>
+            
+            <div id="questionImageContainer"></div>
+            
+            <div id="answersContainer" class="answers-container">
+              <div id="answers">
+                <!-- Answer options will be inserted here -->
+              </div>
+            </div>
+            
+            <div class="text-center mt-3">
+              <button id="nextBtn" class="btn btn-success hidden">
+                <i class="fas fa-arrow-right"></i>
+                ข้อต่อไป
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary Page -->
+      <div id="summaryPage" class="hidden">
+        <div class="card-style fade-in-up">
+          <div class="summary-card">
+            <div class="result-header">
+              <div id="resultIcon" class="result-icon">🎯</div>
+              <h2 class="result-title">สรุปผลคะแนน</h2>
+            </div>
+            
+            <div id="resultText" class="mb-4">กำลังคำนวณผล...</div>
+
+            <div id="wrongAnswersSection" class="hidden mt-4">
+              <h5 class="text-danger mb-3">
+                <i class="fas fa-exclamation-triangle"></i>
+                ข้อที่ตอบผิด:
+              </h5>
+              <div id="wrongAnswersList"></div>
+            </div>
+
+            <div class="mt-4">
+              <button id="previewBtn" class="btn btn-info mx-2">
+                <i class="fas fa-eye"></i>
+                ดูใบประกาศนียบัตร
+              </button>
+
+              <button id="backBtn" class="btn btn-secondary mx-2">
+                <i class="fas fa-home"></i>
+                กลับหน้าเข้าสู่ระบบ
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Certificate Template -->
+  <div id="certificateTemplate" class="hidden">
+    <div class="certificate-container">
+      <div class="cert-header">
+        <div class="logo-section">
+          <div class="company-name">Ford Motor Company</div>
+        </div>
+        <div class="cert-title">CERTIFICATE OF COMPLETION</div>
+        <div class="cert-subtitle">ใบรับรองการผ่านการทดสอบ</div>
+      </div>
+
+      <div class="cert-body">
+        <div class="program-title">
+          <div class="en-title">Forklift Safety Training Program</div>
+          <div class="th-title">โปรแกรมฝึกอบรมความปลอดภัยรถโฟร์คลิฟท์</div>
+        </div>
+
+        <div class="recipient-section">
+          <div class="cert-label">This is to certify that / ขอรับรองว่า</div>
+          <div class="recipient-name" id="certName">-</div>
+          <div class="cert-label">has successfully completed / ได้ผ่านการทดสอบเรียบร้อยแล้ว</div>
+        </div>
+
+        <div class="details-grid">
+          <div class="detail-row">
+            <span class="label">Department / แผนก:</span>
+            <span class="value" id="certDept">-</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Team / ทีม:</span>
+            <span class="value" id="certTeam">-</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Training Type / ประเภท:</span>
+            <span class="value" id="certType">-</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Test Score / คะแนน:</span>
+            <span class="value" id="certScore">-</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Date of Completion / วันที่ผ่านการทดสอบ:</span>
+            <span class="value" id="certDate">-</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Certificate ID / เลขที่ใบประกาศนียบัตร:</span>
+            <span class="value" id="certId">-</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cert-footer">
+        <div class="footer-left">
+          <div class="signature-line"></div>
+          <div class="signature-label">Authorized Signature<br>ลายเซ็นผู้มีอำนาจ</div>
+        </div>
+        <div class="footer-right">
+          <div class="issue-date">Issue Date: <span id="certIssueDate">-</span></div>
+          <div class="validity">Valid for 2 years / มีอายุ 2 ปี</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Ford PMHV Quiz Application
+    console.log('🚀 Loading Ford PMHV Quiz Application...');
+
+    // DOM Element References
+    const loginPage = document.getElementById('loginPage');
+    const quizPage = document.getElementById('quizPage');
+    const summaryPage = document.getElementById('summaryPage');
+
+    const nameInput = document.getElementById('name');
+    const departmentSel = document.getElementById('department');
+    const teamSel = document.getElementById('team');
+    const typeSel = document.getElementById('type');
+    const loginForm = document.getElementById('loginForm');
+
+    const totalQuestionsSpan = document.getElementById('totalQuestions');
+    const passingScoreSpan = document.getElementById('passingScore');
+
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+    const timerEl = document.getElementById('timer');
+    const questionEl = document.getElementById('questionText');
+    const questionImageContainer = document.getElementById('questionImageContainer');
+    const answersEl = document.getElementById('answers');
+    const nextBtn = document.getElementById('nextBtn');
+
+    const resultEl = document.getElementById('resultText');
+    const resultIcon = document.getElementById('resultIcon');
+    const backBtn = document.getElementById('backBtn');
+    const wrongAnswersSection = document.getElementById('wrongAnswersSection');
+    const wrongAnswersList = document.getElementById('wrongAnswersList');
+
+    // Certificate elements
+    const certTemplate = document.getElementById('certificateTemplate');
+    const certName = document.getElementById('certName');
+    const certDept = document.getElementById('certDept');
+    const certTeam = document.getElementById('certTeam');
+    const certType = document.getElementById('certType');
+    const certScore = document.getElementById('certScore');
+    const certDate = document.getElementById('certDate');
+    const certId = document.getElementById('certId');
+    const certIssueDate = document.getElementById('certIssueDate');
+
+    // Action buttons
+    const previewBtn = document.getElementById('previewBtn');
+
+    // Application State
+    let currentQ = 0;
+    let score = 0;
+    let userData = {};
+    let startTime = null;
+    let timerCount = 30;
+    let timerInterval;
+    let wrongAnswers = [];
+    let questionOrder = [];
+    let questions = [];
+
+    // ข้อสอบ (ฐานข้อมูลคำถาม)
+    // --- ข้อสอบ (ฐานข้อมูลคำถาม) - เพิ่มภาพประกอบ ---
+    const baseQuestions = [
+      { 
+        q: "รถโฟร์คลิฟท์คืออะไร?",
+        image: "https://st2.depositphotos.com/1001877/5525/i/600/depositphotos_55251573-stock-photo-forklift-truck-on-white-isolated.jpg",
+        a: ["อุปกรณ์สำหรับเคลื่อนย้ายสินค้า", "ยานพาหนะ", "เครื่องมือชนิดหนึ่ง", "เครื่องจักรใช้ยกสินค้าแทนคน"], 
+        c: 3 
+      },
+      { 
+        q: "ตามมาตรฐานสากล ใครเป็นผู้ตรวจเช็ครถโฟร์คลิฟท์ประจำวัน?",
+        image: "https://st5.depositphotos.com/15430914/68221/v/600/depositphotos_682214636-stock-illustration-industrial-inspector-inspecting-lift-truck.jpg",
+        a: ["เจ้าหน้าที่ความปลอดภัย (จป.)", "ช่างซ่อมบำรุง (PE.)", "พนักงานขับรถโฟร์คลิฟท์", "หัวหน้างาน"], 
+        c: 2 
+      },
+      { 
+        q: "การตรวจรถโฟร์คลิฟท์ตามแบบตรวจเช็คประจำวัน ถ้าท่านพบสิ่งผิดปกติเกี่ยวกับรถ ท่านควรทำอย่างไร?",
+        image: "https://st3.depositphotos.com/1007566/18392/v/600/depositphotos_183928566-stock-illustration-construction-worker-cartoon.jpg",
+        a: ["แจ้งหัวหน้างานและนำรถไปใช้ปกติ", "แก้ไขด้วยตนเอง เมื่อพบสิ่งผิดปกติ", "แจ้งหัวหน้างานทันทีที่พบสิ่งผิดปกติ และทำป้ายเตือนติดไว้กับตัวรถ", "ใช้รถปกติ โดยไม่ต้องแจ้งหัวหน้างาน"], 
+        c: 2 
+      },
+      { 
+        q: "พนักงานขับรถโฟร์คลิฟท์ที่ดีต้องมีคุณสมบัติและทักษะอย่างไร?",
+        a: ["ต้องเข้าใจพื้นฐาน โครงสร้าง ส่วนประกอบทั้งหมดของรถโฟร์คลิฟท์", "ต้องเข้าใจข้อปฏิบัติต่างๆ และกฎความปลอดภัยการใช้รถโฟร์คลิฟท์", "ต้องเข้าใจวิธีการตรวจเช็ครถโฟร์คลิฟท์ และขั้นตอนการทำงานของรถโฟร์คลิฟท์", "ต้องผ่านการฝึกอบรม \"ภาคทฤษฎีและภาคปฏิบัติ\" หรือได้รับอนุญาตจากบริษัทฯเท่านั้น"], 
+        c: 3 
+      },
+      { 
+        q: "ก่อนเคลื่อนรถโฟร์คลิฟท์ทุกครั้ง พนักงานต้องปรับงาให้อยู่ในลักษณะใด?",
+        a: ["ปรับเสางาเอียงอย่างไรก็ได้ ตามความต้องการของผู้ขับ", "ปรับงาให้อยู่สูงจากพื้น 50 ซม. และเอนเสางาเข้าหารถ", "ปรับงาให้อยู่สูงจากพื้น 15-20 ซม. และเอนเสางาเข้าหารถเล็กน้อย", "ปรับงาให้อยู่สูงจากพื้น 15-20 ซม. และปรับเสางาเอนไปข้างหน้ารถ"], 
+        c: 2 
+      },
+      { 
+        q: "การตักและยกพาเลทสินค้า ลักษณะใดสามารถรับน้ำหนักบรรทุกได้มากที่สุด?",
+        image: "https://st.depositphotos.com/15430914/60907/v/600/depositphotos_609077754-stock-illustration-industrial-worker-carefully-driving-forklift.jpg",
+        a: ["ยกหรือตักบริเวณกึ่งกลางงา", "ยกหรือตักให้ชิดโคนงา", "ยกหรือตักบริเวณปลายงา", "ยกหรือตักบริเวณใดก็ได้"], 
+        c: 1 
+      },
+      { 
+        q: "ข้อใดต่อไปนี้ปฏิบัติ \"ผิดกฎความปลอดภัยในการขับรถโฟร์คลิฟท์ทำงาน\"",
+        a: ["ใช้งาดันของที่กำลังจะตกจากพาเลท", "ไม่ยืน หรือเดินผ่านใต้งารถโฟร์คลิฟท์ที่กำลังยกอยู่", "ก่อนตรวจเช็คเครื่องยนต์ต้องดับเครื่องยนต์ทุกครั้ง", "ไม่ยื่นมือ หรือศีรษะออกนอกตัวรถ"], 
+        c: 0 
+      },
+      { 
+        q: "อุบัติเหตุที่เกิดจากรถโฟร์คลิฟท์ ส่วนใหญ่ มีสาเหตุมาจากอะไรมากที่สุด?",
+        a: ["อุปกรณ์ป้องกันอันตรายรถโฟร์คลิฟท์ มีไม่ครบ", "พนักงาน ฝ่าฝืนความปลอดภัยในการใช้รถโฟร์คลิฟท์", "สถานที่ปฏิบัติงานไม่ปลอดภัย", "การจัดวางสินค้าไม่สมดุลบนพาเลท"], 
+        c: 1 
+      },
+      { 
+        q: "การขับรถโฟร์คลิฟท์ ควรเว้นระยะห่างจากรถคันหน้า,คันหลัง หรือคน เพื่อความปลอดภัยไว้เท่าไร?",
+        a: ["1 เมตร", "2 เมตร", "3 เมตร", "เท่าไรก็ได้"], 
+        c: 2 
+      },
+      { 
+        q: "จงเรียงขั้นตอนการ Take A \"S.E.A.T\" ที่ถูกต้อง?",
+        a: ["สบตา / รับรู้ / ขอบคุณ / หยุด", "หยุด / สบตา / ขอบคุณ / รับรู้", "หยุด / รับรู้ / ขอบคุณ / สบตา", "หยุด / สบตา / รับรู้ / ขอบคุณ"], 
+        c: 3 
+      },
+      { 
+        q: "รถ PMHV มีมาตรวัดชั่วโมงการทำงานไว้เพื่ออะไร?",
+        a: ["บอกเวลาปัจจุบัน", "บอกเวลาถึงกำหนดการบำรุงรักษา", "บอกเวลาเริ่มงาน", "ถูกทุกข้อ"], 
+        c: 1 
+      },
+      { 
+        q: "เราสามารถตรวจสอบอาการผิดปกติของรถโฟร์คลิฟท์เบื้องต้น จากจุดใดของตัวรถ?",
+        a: ["งา", "แผงหน้าปัทม์", "สวิทช์ไฟหน้า", "พวงมาลัย"], 
+        c: 1 
+      },
+      { 
+        q: "การขับรถโฟร์คลิฟท์ ถ้าต้องการขับเดินหน้า เลี้ยวซ้ายหรือเลี้ยวขวา ควรปฏิบัติอย่างไร?",
+        a: ["ขับชิดด้านใดก็ได้", "ขับชิดตรงกลางของถนนเท่านั้น", "ขับชิดด้านขวาของถนนเท่านั้น", "ขับเลี้ยวซ้ายให้ชิดซ้าย ขับเลี้ยวขวาให้ชิดขวา"], 
+        c: 3 
+      },
+      { 
+        q: "การขับรถโฟร์คลิฟท์ในขณะที่บรรทุกสินค้า ควรใช้ความเร็วเท่าไรถึงจะปลอดภัย?",
+        a: ["ไม่เกิน 10 กม./ชม.", "ไม่เกิน 12 กม./ชม.", "ไม่เกิน 15 กม./ชม.", "ไม่เกิน 20 กม./ชม."], 
+        c: 0 
+      },
+      { 
+        q: "หลังจากปฏิบัติงานเสร็จเรียบร้อยแล้ว ต้องจอดรถอย่างไรให้ถูกต้อง?",
+        a: ["จอดที่ไหนก็ได้ ปิดสวิทช์กุญแจ, ปลดเกียร์ว่าง, ดึงเบรกมือ", "จอดที่ไหนก็ได้ ปิดสวิทช์กุญแจ, ปลดเกียร์ว่าง", "จอดที่กำหนดไว้, ปลายงาแนบพื้น, ปลดเกียร์ว่าง, ดึงเบรกมือ และปิดสวิทช์กุญแจ", "จอดที่กำหนดไว้, ล้อหลังตรง, ปลายงาแนบพื้น, ปลดเกียร์ว่าง, ดึงเบรกมือ และปิดสวิทช์กุญแจ-ดึงกุญแจออกเก็บไว้กับตัว"], 
+        c: 3 
+      },
+      { 
+        q: "เมื่อบรรทุกสินค้าสูงบังตา และต้องขับรถขึ้นทางลาดชัน ท่านควรปฏิบัติอย่างไร?",
+        a: ["ขับรถโฟร์คลิฟท์เดินหน้าขึ้น ปรับงาให้เหมาะสม โดยไม่มีคนบอกทาง", "ขับรถโฟร์คลิฟท์เดินหน้าขึ้น ปรับงาให้เหมาะสม โดยมีคนบอกทาง", "ขับรถโฟร์คลิฟท์ถอยหลังขึ้น ปรับงาให้เหมาะสม โดยไม่มีคนบอกทาง", "ขับรถโฟร์คลิฟท์ถอยหลังขึ้น ปรับงาให้เหมาะสม โดยมีคนบอกทาง"], 
+        c: 1 
+      },
+      { 
+        q: "พนักงานขับ PMHV ไฟฟ้า ต้องนำรถไปทำการชาร์จใหม่ เมื่อใด?",
+        a: ["ดูระดับไฟแบตเตอรี่ที่อยู่บนหน้าปัดรถเหลือ 2 ขีด", "เช็คดูว่า รถโฟร์คลิฟท์สามารถเคลื่อนที่ได้ปกติหรือไม่", "เปิดแบตเตอรี่ดูว่าน้ำกลั่นแห้งหรือเปล่า", "สอบถามเพื่อนร่วมงานที่ใช้รถโฟร์คลิฟท์ด้วยกัน"], 
+        c: 0 
+      },
+      { 
+        q: "ถ้าพบว่าสายไฟที่แบตเตอรี่ชำรุด หรือมีรอยถลอก ควรปฏิบัติอย่างไรถึงจะปลอดภัยที่สุด?",
+        a: ["ไม่จำเป็นต้องทำอะไร ถ้ายังสามารถใช้งานได้อยู่", "ใช้เทปพันสายไฟพันไว้แล้วใช้ต่อ", "ทิ้งไว้เฉยๆ แล้วเลือกใช้แบตเตอรี่ที่ไม่ชำรุด", "หยุดใช้งาน ติดป้ายเตือน แล้วรีบแจ้งหัวหน้างานให้เปลี่ยนทันที"], 
+        c: 3 
+      },
+      { 
+        q: "จุดศูนย์ถ่วงของรถโฟร์คลิฟท์อยู่ที่ใด?",
+        a: ["อยู่ที่ จุดกึ่งกลางล้อหน้า+ของสัมภาระ", "อยู่ที่ จุดกึ่งกลางล้อหน้า", "อยู่ที่ ระยะจุดกึ่งกลางของสัมภาระ", "อยู่ที่ จุดกึ่งกลางของตัวรถ"], 
+        c: 1 
+      },
+      { 
+        q: "รถโฟร์คลิฟท์ชนิด Counter Balance ใช้ล้อใดเป็นล้อขับเคลื่อน, รับน้ำหนัก, และเบรก?",
+        a: ["ล้อหน้า", "ล้อหลัง", "ใช้ทั้ง ล้อหน้าและล้อหลัง", "ถูกทุกข้อ"], 
+        c: 0 
+      },
+      { 
+        q: "ข้อใดต่อไปนี้ที่พนักงานขับรถโฟร์คลิฟท์ ไม่ควรปฏิบัติ?",
+        a: ["พูดคุยปรึกษากันขณะขับรถโฟร์คลิฟท์", "ยกพาเลทครั้งละหลายๆตัวเกินแผงงา เพื่อประหยัดเวลาในการทำงาน", "ขับรถเร็ว เลี้ยวเร็ว หยุดรถกะทันหัน", "ไม่ควรปฏิบัติทุกข้อ"], 
+        c: 3 
+      },
+      { 
+        q: "เมื่อพนักงานขับ PMHV ขับผ่าน ทางเลี้ยว, ทางแยก ควรปฏิบัติอย่างไรปลอดภัยที่สุด?",
+        a: ["ขับรถผ่านเฉยๆ", "รีบขับรถผ่านอย่างรวดเร็ว", "ใช้สัญญาณแตร ก่อนขับรถผ่าน", "ใช้สัญญาณแตร และใช้สัญญาณมือ (Take a seat) ก่อนขับรถผ่าน"], 
+        c: 3 
+      },
+      { 
+        q: "ระยะห่างระหว่าง พนักงานกับ PMHV ที่ติดเครื่องยนต์อยู่ ควรเว้นระยะห่างเท่าไหร่ปลอดภัยที่สุด?",
+        a: ["ด้านข้าง 1 ฟุต ด้านหน้าและด้านหลัง 2 เมตร", "ด้านข้าง 2 ฟุต ด้านหน้าและด้านหลัง 2 เมตร", "ด้านข้าง 2 ฟุต ด้านหน้าและด้านหลัง 3 เมตร", "ผิดทุกข้อ"], 
+        c: 2 
+      },
+      { 
+        q: "เมื่อพนักงานตรวจเช็ค PMHV ก่อนปฏิบัติงาน เจอน้ำมันรั่วเต็มพื้นใต้ท้อง PMHV ควรปฏิบัติอย่างไร?",
+        a: ["นำรถไปใช้งานตามปกติ", "หารอยรั่วที่น้ำมันไหลออกมา แล้วทำการซ่อม", "ห้ามใช้งาน ติดป้ายเตือน และรีบแจ้งหัวหน้างานให้ทราบทันที", "ทำความสะอาด นำรถออกไปใช้งานตามปกติ ไม่ต้องแจ้งใคร"], 
+        c: 2 
+      },
+      { 
+        q: "เมื่อพบเห็นเพื่อนร่วมงานหยอกล้อกัน โดยใช้รถโฟร์คลิฟท์ พนักงานควรปฏิบัติอย่างไร?",
+        a: ["เข้าไปร่วมหยอกล้อด้วยน่าสนุกดี", "มองดูเฉยๆ เพราะไม่เกี่ยวกับเรา", "แจ้งหัวหน้างานให้ทราบทันที", "เข้าไปเตือนเพื่อนๆด้วยความระมัดระวัง บอกโทษของการใช้รถที่ประมาทในฐานะเพื่อนร่วมงานกัน"], 
+        c: 3 
+      },
+      { 
+        q: "เมื่อพนักงานขับรถโฟร์คลิฟท์ พบรอยปูนแตกร้าวลึกเป็นแนวยาว ตรงทางบรรทุกสินค้า ควรปฏิบัติอย่างไร?",
+        a: ["ขับรถผ่านรอยปูนแตกด้วยความระมัดระวัง ไม่ต้องแจ้งใคร", "ใช้เส้นทางอื่นที่ต้องอ้อมไกลมาก", "ขับรถผ่านรอยปูนแตกด้วยความระมัดระวัง ทำป้ายเตือน และรีบแจ้งหัวหน้างานทันที", "ขับรถใช้ความเร็วปกติ ไม่ต้องระวัง"], 
+        c: 2 
+      },
+      { 
+        q: "เมื่อต้องขับรถผ่าน ทางร่วม ทางแยก ควรปฏิบัติอย่างไร?",
+        a: ["มองกระจกโค้งและชะลอความเร็ว", "หยุดรถมองซ้าย-ขวา / กดแตร", "ขับรถด้วยความเร็ว ไม่ต้องเบรก", "ถูกทั้งข้อ(ก) และข้อ(ข)"], 
+        c: 3 
+      },
+      { 
+        q: "จากรูปภาพนี้ หมายถึงอะไร?",
+        image: "https://st.depositphotos.com/15430914/60931/v/1600/depositphotos_609317266-stock-illustration-forks-safety-handling-fork-lift.jpg",
+        a: ["ควรมีคนอยู่ใกล้ๆเพื่อจะได้ทำงานไม่เหงา", "การทำงานต้องมีคนคอยบอกทาง", "การเข้าไปสั่งงานต้องเข้าไปใกล้ๆจะได้ไม่ผิดพลาด", "ห้ามยืนใต้งา หรือบริเวณรถโฟร์คลิฟท์ปฏิบัติงานอยู่"], 
+        c: 3 
+      },
+      { 
+        q: "จากภาพนี้ หมายถึงอะไร?",
+        image: "https://st.depositphotos.com/15430914/60907/v/600/depositphotos_609077780-stock-illustration-transporting-people-forklift-prohibited-dangers.jpg",
+        a: ["รถโฟร์คลิฟท์สามารถใช้ยกคนได้", "ห้ามใช้รถโฟร์คลิฟท์ยกคนขึ้นที่สูง ถ้าไม่มีกระเช้ากันตก", "เพื่อความรวดเร็วเราสามารถใช้รถโฟร์คลิฟท์ยกคนได้", "ถูกทุกข้อ"],
+        c: 1 
+      },
+      { 
+        q: "จากภาพนี้ หมายถึงอะไร?",
+        image: "https://st.depositphotos.com/15430914/60907/v/600/depositphotos_609077762-stock-illustration-transporting-people-forklift-prohibited-fork.jpg",
+        a: ["ทางเดียวกันไปด้วยกันเพื่อความประหยัด", "รถโฟร์คลิฟท์ นอกจากใช้ยกของแล้ว ยังสามารถใช้รับ-ส่งคนได้ด้วย", "รถโฟร์คลิฟท์ มีไว้ใช้งานห้ามโดยสาร", "ถูกทุกข้อ"], 
+        c: 2 
+      },
+      { 
+        q: "จากภาพนี้ หมายถึงอะไร?",
+        image: "https://st.depositphotos.com/15430914/60907/v/600/depositphotos_609077760-stock-illustration-dangers-driving-forklift-industrial-worker.jpg",
+        a: ["สิ่งของบังตาเดินหน้าไป", "ยกสินค้าไป วิ่งไปพร้อมๆกัน", "เบิ้ลเครื่องยนต์เล่น", "ไม่เลี้ยว / หยุด กะทันหัน"], 
+        c: 3 
+      },
+      { 
+        q: "สถานะความจุแบตเตอรี่หรือพลังงานที่เหลืออยู่ สามารถดูได้จากที่ใด?",
+        a: ["หน้าจอสแกนเนอร์", "หน้าจอโทรศัพท์มือถือ", "หน้าปัดของ PMHV", "หน้าปัดของตู้ชาร์จ"], 
+        c: 2 
+      },
+      { 
+        q: "ไฟเตือนเบรก-จอด ตรงกับสัญลักษณ์รูปใด?",
+        a: ["สัญลักษณ์แบตเตอรี่", "สัญลักษณ์เบรก", "สัญลักษณ์น้ำมัน", "สัญลักษณ์อุณหภูมิ"], 
+        c: 1 
+      },
+      { 
+        q: "พนักงานขับ Tow truck เมื่อต้องต่อพ่วงดอลลี่ใส่งาน หลายดอลลี่ ต้องไม่เกินเท่าไหร่ ?",
+        a: ["5 ดอลลี่", "6 ดอลลี่", "7 ดอลลี่ แต่ยาวไม่เกิน 15 เมตร", "7 ดอลลี่ แต่ยาวไม่เกิน 20 เมตร"], 
+        c: 2 
+      },
+      { 
+        q: "ไฟเตือนแสดงว่ารถเกิดปัญหาในระบบ ต้องตามช่างมาตรวจสอบ ตรงกับสัญลักษณ์รูปใด?",
+        a: ["สัญลักษณ์เครื่องยนต์", "สัญลักษณ์เบรก", "สัญลักษณ์น้ำมัน", "สัญลักษณ์อุณหภูมิ"], 
+        c: 0 
+      },
+      { 
+        q: "พนักงานขับ PMHV ที่ดี ควรตระหนักถึงสิ่งใดบ้างในการขับ PMHV ให้ปลอดภัย?",
+        a: ["เพื่อนร่วมงานและตัวพนักงานขับรถเอง", "ทรัพย์สินของบริษัท", "กฎระเบียบการขับขี่รถและกฎความปลอดภัยต่างๆ", "ถูกทุกข้อ"], 
+        c: 3 
+      },
+      { 
+        q: "ก่อนนำ PMHV ออกไปใช้งาน ผู้ขับ PMHV ควรจะปฏิบัติอย่างไรเป็นอันดับแรก?",
+        a: ["อุ่นเครื่อง PMHV ก่อน", "นำ PMHV ออกไปปฏิบัติงานทันที", "ตรวจสภาพ PMHV", "เติมน้ำกลั่น"], 
+        c: 2 
+      },
+      { 
+        q: "ป้ายคำเตือน และสัญลักษณ์บน PMHV ผู้ขับรถควรปฏิบัติอย่างไร?",
+        a: ["ปฏิบัติอย่างเคร่งครัด", "แล้วแต่ความพอใจ", "ข้อ ก.และ ข. ถูก", "จะปฏิบัติตามหรือไม่ขึ้นอยู่ลักษณะของการยก,ขนาด และ รูปร่างของสิ่งของ"], 
+        c: 0 
+      },
+      { 
+        q: "การเคลื่อนรถเข้าหาวัสดุสิ่งของ เพื่อจะยกของควรจะหยุดห่างจากวัสดุสิ่งของประมาณเท่าไร?",
+        a: ["ประมาณ 10 ซม. จากตำแหน่งที่จัดวางวัสดุ", "ประมาณ 30 ซม. จากตำแหน่งที่จัดวางวัสดุ", "ประมาณ 60 ซม. จากตำแหน่งที่จัดวางวัสดุ", "ประมาณ 90 ซม. จากตำแหน่งที่จัดวางวัสดุ"], 
+        c: 1 
+      },
+      { 
+        q: "เมื่อยกของให้อยู่ในตำแหน่งที่สูงขึ้น จะมีผลอย่างไร?",
+        a: ["ทำให้การทรงตัวของรถไม่มั่นคง", "จุดศูนย์ถ่วงรวมของรถและของที่บรรทุกเปลี่ยนไป", "สามารถขับเคลื่อนรถได้คล่องตัวและปลอดภัยยิ่งขึ้น", "ข้อ ก.และ ข. ถูก"], 
+        c: 3 
+      }
+    ];
+
+    // Local Storage Functions
+    class SimpleStorage {
+      static save(result) {
+        try {
+          const storageKey = 'ford_quiz_results';
+          let results = this.getAll();
+          
+          results.push({
+            id: Date.now(),
+            timestamp: new Date().toISOString(),
+            name: result.name,
+            department: result.department,
+            team: result.team,
+            type: result.type,
+            score: result.score,
+            totalQuestions: result.totalQuestions,
+            percentage: result.percentage,
+            passed: result.passed,
+            certificateId: result.certificateId,
+            timeSpent: result.timeSpent
+          });
+          
+          if (results.length > 50) {
+            results = results.slice(-50);
+          }
+          
+          localStorage.setItem(storageKey, JSON.stringify(results));
+          console.log('✓ Test result saved locally');
+          return true;
+        } catch (error) {
+          console.error('❌ Error saving result:', error);
+          return false;
+        }
+      }
+
+      static getAll() {
+        try {
+          const data = localStorage.getItem('ford_quiz_results');
+          return data ? JSON.parse(data) : [];
+        } catch (error) {
+          console.error('❌ Error reading results:', error);
+          return [];
+        }
+      }
+
+      static clear() {
+        localStorage.removeItem('ford_quiz_results');
+      }
+    }
+
+    // Helper Functions
+    function shuffle(arr) {
+      const newArr = [...arr];
+      for (let i = newArr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
+      }
+      return newArr;
+    }
+
+    function showNotification(message, type = 'warning') {
+      try {
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.style.cssText = `
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          padding: 15px 20px;
+          border-radius: 8px;
+          color: white;
+          font-weight: 500;
+          z-index: 10000;
+          max-width: 400px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+          animation: slideIn 0.3s ease-out;
+        `;
+        
+        let bgColor = '#ffc107';
+        let icon = 'fas fa-exclamation-triangle';
+        
+        if (type === 'success') {
+          bgColor = '#28a745';
+          icon = 'fas fa-check-circle';
+        } else if (type === 'danger') {
+          bgColor = '#dc3545';
+          icon = 'fas fa-times-circle';
+        } else if (type === 'info') {
+          bgColor = '#17a2b8';
+          icon = 'fas fa-info-circle';
+        }
+        
+        notification.style.backgroundColor = bgColor;
+        notification.innerHTML = `<i class="${icon}"></i> ${message}`;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+          if (notification.parentNode) {
+            notification.style.animation = 'slideIn 0.3s ease-out reverse';
+            setTimeout(() => notification.remove(), 300);
+          }
+        }, 4000);
+        
+      } catch (error) {
+        console.error('Error showing notification:', error);
+      }
+    }
+
+    function generateCertificateId(userData, score, questions) {
+      try {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        
+        const uniqueData = `${userData.name}_${userData.department}_${score}_${questions.length}_${now.getTime()}`;
+        
+        let hash = 0;
+        for (let i = 0; i < uniqueData.length; i++) {
+          const char = uniqueData.charCodeAt(i);
+          hash = ((hash << 5) - hash) + char;
+          hash = hash & hash;
+        }
+        
+        const sequence = Math.abs(hash).toString().slice(-4).padStart(4, '0');
+        const certId = `FORD-FL-${year}${month}${day}-${sequence}`;
+        
+        return certId;
+      } catch (error) {
+        console.error('Error generating certificate ID:', error);
+        return `FORD-FL-${Date.now()}`;
+      }
+    }
+
+    function buildQuestionsFromOrder(order) {
+      try {
+        questions = order.map(idx => baseQuestions[idx]);
+        const passing = Math.ceil(questions.length * 0.8);
+        
+        if (totalQuestionsSpan) totalQuestionsSpan.textContent = questions.length;
+        if (passingScoreSpan) passingScoreSpan.textContent = passing;
+        
+        console.log(`✅ Questions built: ${questions.length} questions, passing score: ${passing}`);
+      } catch (error) {
+        console.error('Error building questions:', error);
+      }
+    }
+
+    // Timer Functions
+    function startTimer() {
+      try {
+        clearInterval(timerInterval);
+        if (timerEl) timerEl.className = 'timer';
+        
+        timerInterval = setInterval(() => {
+          timerCount--;
+          const timerSpan = timerEl?.querySelector('span');
+          if (timerSpan) timerSpan.textContent = `${timerCount}s`;
+
+          if (timerCount <= 10 && timerCount > 5) {
+            if (timerEl) timerEl.className = 'timer warning';
+            if (timerCount === 10) showNotification('⚠️ เหลือเวลา 10 วินาที!', 'warning');
+          } else if (timerCount <= 5 && timerCount > 0) {
+            if (timerEl) timerEl.className = 'timer danger';
+            if (timerCount === 5) showNotification('🚨 เหลือเวลา 5 วินาที!', 'danger');
+          }
+
+          if (timerCount <= 0) {
+            clearInterval(timerInterval);
+            showNotification('⏰ หมดเวลา! ข้ามไปข้อถัดไป', 'danger');
+            handleAnswer(-1);
+          }
+        }, 1000);
+      } catch (error) {
+        console.error('Error starting timer:', error);
+      }
+    }
+
+    // Main Quiz Functions
+    function updateProgressBar() {
+      try {
+        const progressPercent = ((currentQ + 1) / questions.length) * 100;
+        
+        if (progressBar) {
+          progressBar.style.width = `${progressPercent}%`;
+        }
+        
+        if (progressText) {
+          progressText.textContent = `${currentQ + 1}/${questions.length}`;
+        }
+        
+        console.log(`📊 Progress: ${progressPercent.toFixed(1)}%`);
+      } catch (error) {
+        console.error('❌ Error updating progress:', error);
+      }
+    }
+
+    function displayQuestionContent(question) {
+      try {
+        const questionContainer = document.querySelector('.question-card');
+        
+        if (!questionContainer) {
+          throw new Error('Question container not found');
+        }
+        
+        questionContainer.innerHTML = `
+          <div class="question-number">
+            <i class="fas fa-question-circle"></i>
+            <span>ข้อ ${currentQ + 1}</span>
+          </div>
+          <div class="question-text">${question.q}</div>
+        `;
+        
+        questionContainer.classList.remove('fade-in-up');
+        setTimeout(() => {
+          questionContainer.classList.add('fade-in-up');
+        }, 10);
+        
+        console.log('✅ Question content displayed');
+      } catch (error) {
+        console.error('❌ Error displaying question content:', error);
+        throw error;
+      }
+    }
+
+    function displayQuestionImage(question) {
+      try {
+        if (!questionImageContainer) return;
+        
+        questionImageContainer.innerHTML = '';
+        
+        if (question.image) {
+          const imgContainer = document.createElement('div');
+          imgContainer.className = 'text-center';
+          
+          const img = document.createElement('img');
+          img.src = question.image;
+          img.className = 'question-image';
+          img.alt = 'ภาพประกอบคำถาม';
+          img.loading = 'lazy';
+          
+          img.onerror = function() {
+            imgContainer.innerHTML = `
+              <div class="image-placeholder">
+                <i class="fas fa-image fa-2x mb-2"></i><br>
+                ไม่สามารถโหลดภาพได้
+              </div>
+            `;
+          };
+          
+          imgContainer.appendChild(img);
+          questionImageContainer.appendChild(imgContainer);
+          
+          console.log('🖼️ Question image displayed');
+        }
+      } catch (error) {
+        console.error('❌ Error displaying image:', error);
+      }
+    }
+
+    function displayAnswerOptions(question) {
+      try {
+        if (!answersEl) {
+          throw new Error('Answers container not found');
+        }
+        
+        answersEl.innerHTML = '';
+        
+        question.a.forEach((option, index) => {
+          const button = document.createElement('button');
+          button.className = 'answer-button';
+          button.innerHTML = `
+            <div class="answer-content">
+              <div class="answer-letter">${String.fromCharCode(65 + index)}</div>
+              <div class="answer-text">${option}</div>
+            </div>
+          `;
+          button.onclick = () => handleAnswer(index);
+          answersEl.appendChild(button);
+        });
+        
+        console.log(`✅ ${question.a.length} answer options displayed`);
+      } catch (error) {
+        console.error('❌ Error displaying answers:', error);
+        throw error;
+      }
+    }
+
+    function showQuestion() {
+      console.log(`🎯 Showing question ${currentQ + 1}/${questions.length}`);
+      
+      try {
+        clearInterval(timerInterval);
+        timerCount = 30;
+        
+        if (!questions || questions.length === 0) {
+          throw new Error('Questions array is empty');
+        }
+        
+        if (currentQ >= questions.length) {
+          throw new Error('Question index out of range');
+        }
+        
+        const question = questions[currentQ];
+        if (!question || !question.q || !Array.isArray(question.a)) {
+          throw new Error('Invalid question data');
+        }
+        
+        startTimer();
+        updateProgressBar();
+        displayQuestionContent(question);
+        displayQuestionImage(question);
+        displayAnswerOptions(question);
+        
+        if (nextBtn) nextBtn.classList.add('hidden');
+        
+        console.log('✅ Question displayed successfully');
+        
+      } catch (error) {
+        console.error('❌ Error in showQuestion:', error);
+        showNotification(`เกิดข้อผิดพลาด: ${error.message}`, 'danger');
+        
+        setTimeout(() => {
+          showLoginPage();
+        }, 2000);
+      }
+    }
+
+    function handleAnswer(selectedIndex) {
+      try {
+        clearInterval(timerInterval);
+        const question = questions[currentQ];
+
+        if (selectedIndex !== question.c) {
+          wrongAnswers.push({
+            questionNumber: currentQ + 1,
+            question: question.q,
+            userAnswer: selectedIndex >= 0 ? question.a[selectedIndex] : 'ไม่ได้ตอบ (หมดเวลา)',
+            correctAnswer: question.a[question.c],
+            userAnswerIndex: selectedIndex,
+            correctAnswerIndex: question.c
+          });
+        }
+
+        if (answersEl) {
+          Array.from(answersEl.children).forEach((btn, i) => {
+            btn.disabled = true;
+            const letter = btn.querySelector('.answer-letter');
+            
+            if (i === question.c) {
+              btn.classList.add('correct');
+              if (letter) letter.innerHTML = '<i class="fas fa-check"></i>';
+            } else if (i === selectedIndex) {
+              btn.classList.add('incorrect');
+              if (letter) letter.innerHTML = '<i class="fas fa-times"></i>';
+            }
+          });
+        }
+
+        if (selectedIndex === question.c) score++;
+        
+        if (nextBtn) nextBtn.classList.remove('hidden');
+        
+        console.log(`✅ Answer handled: selected=${selectedIndex}, correct=${question.c}, score=${score}`);
+        
+      } catch (error) {
+        console.error('❌ Error handling answer:', error);
+        showNotification('เกิดข้อผิดพลาดในการบันทึกคำตอบ', 'danger');
+      }
+    }
+
+    function saveTestResult(timeUsed) {
+      try {
+        const percentage = Math.round((score / questions.length) * 100);
+        const passed = score >= Math.ceil(questions.length * 0.8);
+        const certificateId = passed ? generateCertificateId(userData, score, questions) : null;
+
+        const result = {
+          name: userData.name,
+          department: userData.department,
+          team: userData.team,
+          type: userData.type,
+          score: score,
+          totalQuestions: questions.length,
+          percentage: percentage,
+          passed: passed,
+          certificateId: certificateId,
+          timeSpent: timeUsed
+        };
+
+        const saved = SimpleStorage.save(result);
+        
+        if (saved) {
+          showNotification('💾 บันทึกผลสอบเรียบร้อย', 'success');
+        } else {
+          showNotification('⚠️ ไม่สามารถบันทึกผลสอบได้', 'warning');
+        }
+
+      } catch (error) {
+        console.error('Error saving test result:', error);
+        showNotification('❌ ไม่สามารถบันทึกผลสอบได้', 'danger');
+      }
+    }
+
+    function showSummary() {
+      try {
+        if (quizPage) quizPage.classList.add('hidden');
+        if (summaryPage) summaryPage.classList.remove('hidden');
+        clearInterval(timerInterval);
+
+        const used = Math.floor((Date.now() - startTime) / 1000);
+        const m = Math.floor(used / 60), s = used % 60;
+        const percentage = Math.round((score / questions.length) * 100);
+        const PASSING_SCORE = Math.ceil(questions.length * 0.8);
+        const passed = score >= PASSING_SCORE;
+
+        if (resultIcon) resultIcon.textContent = passed ? '🎉' : '😞';
+        
+        const resultClass = passed ? 'text-success' : 'text-danger';
+        const resultText = passed ? 'ขอแสดงความยินดี! คุณผ่านการทดสอบ' : 'คุณยังไม่ผ่านการทดสอบ กรุณาทำแบบทดสอบใหม่';
+
+        if (resultEl) {
+          resultEl.innerHTML = `
+            <div class="score-display">
+              <h3><strong>${userData.name}</strong></h3>
+              <p class="mb-2"><i class="fas fa-building"></i> แผนก: ${userData.department} | <i class="fas fa-users"></i> ทีม: ${userData.team}</p>
+              <p class="mb-3"><i class="fas fa-certificate"></i> ประเภท: ${userData.type}</p>
+              
+              <div class="mt-3">
+                <h4 class="${resultClass}"><strong>${resultText}</strong></h4>
+                <h5 class="mt-3">
+                  <i class="fas fa-star"></i> คะแนน: 
+                  <span class="${resultClass}">${score}/${questions.length}</span> 
+                  <span class="text-muted">(${percentage}%)</span>
+                </h5>
+                <p class="text-muted">
+                  <i class="fas fa-chart-line"></i> เกณฑ์ผ่าน: ${PASSING_SCORE}/${questions.length} ข้อ (80%)
+                </p>
+              </div>
+              
+              <p class="mt-3 text-muted">
+                <i class="fas fa-clock"></i> เวลาที่ใช้ทั้งหมด: ${m} นาที ${s} วินาที
+              </p>
+            </div>
+          `;
+        }
+
+        if (wrongAnswers.length > 0 && wrongAnswersSection && wrongAnswersList) {
+          wrongAnswersSection.classList.remove('hidden');
+          wrongAnswersList.innerHTML = '';
+          wrongAnswers.forEach(wrong => {
+            const wrongDiv = document.createElement('div');
+            wrongDiv.className = 'wrong-answer';
+            wrongDiv.innerHTML = `
+              <div class="mb-2">
+                <strong><i class="fas fa-question"></i> ข้อ ${wrong.questionNumber}:</strong> 
+                ${wrong.question}
+              </div>
+              <div class="mb-1">
+                <i class="fas fa-times-circle text-danger"></i> 
+                <strong>คำตอบของคุณ:</strong> ${wrong.userAnswer}
+              </div>
+              <div>
+                <i class="fas fa-check-circle text-success"></i> 
+                <strong>คำตอบที่ถูก:</strong> ${wrong.correctAnswer}
+              </div>
+            `;
+            wrongAnswersList.appendChild(wrongDiv);
+          });
+        } else if (wrongAnswersSection) {
+          wrongAnswersSection.classList.add('hidden');
+        }
+
+        if (previewBtn) {
+          previewBtn.style.display = passed ? 'inline-block' : 'none';
+        }
+        
+        saveTestResult(used);
+        
+        console.log('✅ Summary displayed');
+        
+      } catch (error) {
+        console.error('❌ Error showing summary:', error);
+        showNotification('เกิดข้อผิดพลาดในการแสดงผลสอบ', 'danger');
+      }
+    }
+
+    // Page Navigation Functions
+    function showLoginPage() {
+      try {
+        if (summaryPage) summaryPage.classList.add('hidden');
+        if (quizPage) quizPage.classList.add('hidden');
+        if (loginPage) loginPage.classList.remove('hidden');
+        console.log('✅ Login page displayed');
+      } catch (error) {
+        console.error('Error showing login page:', error);
+      }
+    }
+
+    function switchToQuizPage() {
+      console.log('🔄 Switching to quiz page...');
+      
+      try {
+        if (loginPage) {
+          loginPage.classList.add('hidden');
+          console.log('✅ Login page hidden');
+        }
+        
+        if (quizPage) {
+          quizPage.classList.remove('hidden');
+          console.log('✅ Quiz page shown');
+        }
+        
+        setTimeout(() => {
+          showQuestion();
+        }, 200);
+        
+      } catch (error) {
+        console.error('❌ Error switching pages:', error);
+        showNotification('เกิดข้อผิดพลาดในการแสดงหน้าข้อสอบ', 'danger');
+      }
+    }
+
+    // Event Handlers
+    function setupEventHandlers() {
+      try {
+        // Login Form Handler
+        if (loginForm) {
+          loginForm.onsubmit = (e) => {
+            e.preventDefault();
+            console.log('🚀 Starting quiz...');
+            
+            try {
+              const name = nameInput?.value.trim();
+              const department = departmentSel?.value;
+              const team = teamSel?.value;
+              const type = typeSel?.value;
+              
+              if (!name || !department || !team || !type) {
+                showNotification('กรุณากรอกข้อมูลให้ครบทุกช่อง', 'warning');
+                return;
+              }
+              
+              userData = { name, department, team, type };
+              currentQ = 0;
+              score = 0;
+              wrongAnswers = [];
+              startTime = new Date();
+              
+              questionOrder = shuffle([...Array(baseQuestions.length).keys()]);
+              buildQuestionsFromOrder(questionOrder);
+              
+              console.log('✅ Data prepared:', {
+                userData,
+                questionsCount: questions.length,
+                currentQ
+              });
+              
+              switchToQuizPage();
+              
+            } catch (error) {
+              console.error('❌ Error in login form:', error);
+              showNotification('เกิดข้อผิดพลาดในการเริ่มข้อสอบ', 'danger');
+            }
+          };
+        }
+
+        // Next Button Handler
+        if (nextBtn) {
+          nextBtn.onclick = () => {
+            try {
+              currentQ++;
+              if (currentQ < questions.length) {
+                showQuestion();
+              } else {
+                showSummary();
+              }
+            } catch (error) {
+              console.error('Error in next button:', error);
+              showNotification('เกิดข้อผิดพลาดในการไปข้อถัดไป', 'danger');
+            }
+          };
+        }
+
+        // Preview Button Handler
+        if (previewBtn) {
+          previewBtn.onclick = () => {
+            try {
+              if (!userData || !userData.name) {
+                showNotification('ไม่พบข้อมูลผู้ใช้', 'danger');
+                return;
+              }
+              
+              const percentage = Math.round((score / questions.length) * 100);
+              const certificateIdValue = generateCertificateId(userData, score, questions);
+              
+              if (certName) certName.textContent = userData.name;
+              if (certDept) certDept.textContent = userData.department;
+              if (certTeam) certTeam.textContent = userData.team;
+              if (certType) certType.textContent = userData.type;
+              if (certScore) certScore.textContent = `${score}/${questions.length} (${percentage}%)`;
+              if (certDate) certDate.textContent = new Date().toLocaleDateString('th-TH');
+              if (certId) certId.textContent = certificateIdValue;
+              if (certIssueDate) certIssueDate.textContent = new Date().toLocaleDateString('en-US');
+
+              if (certTemplate) {
+                certTemplate.classList.remove('hidden');
+                
+                previewBtn.innerHTML = '<i class="fas fa-eye-slash"></i> ซ่อนใบประกาศนียบัตร';
+                
+                previewBtn.onclick = () => {
+                  if (certTemplate) certTemplate.classList.add('hidden');
+                  previewBtn.innerHTML = '<i class="fas fa-eye"></i> ดูใบประกาศนียบัตร';
+                  setupEventHandlers();
+                };
+                
+                setTimeout(() => {
+                  if (certTemplate) {
+                    certTemplate.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }, 200);
+              }
+            } catch (error) {
+              console.error('Error in preview button:', error);
+              showNotification('เกิดข้อผิดพลาดในการแสดงใบประกาศนียบัตร', 'danger');
+            }
+          };
+        }
+
+        // Back Button Handler
+        if (backBtn) {
+          backBtn.onclick = () => {
+            try {
+              if (summaryPage) summaryPage.classList.add('hidden');
+              if (loginPage) loginPage.classList.remove('hidden');
+              
+              if (nameInput) nameInput.value = '';
+              if (departmentSel) departmentSel.value = '';
+              if (teamSel) teamSel.value = '';
+              if (typeSel) typeSel.value = '';
+              
+              currentQ = 0;
+              score = 0;
+              wrongAnswers = [];
+              userData = {};
+              startTime = null;
+              
+              if (wrongAnswersSection) wrongAnswersSection.classList.add('hidden');
+              
+              buildQuestionsFromOrder([...Array(baseQuestions.length).keys()]);
+            } catch (error) {
+              console.error('Error in back button:', error);
+            }
+          };
+        }
+
+        console.log('✅ Event handlers setup complete');
+        
+      } catch (error) {
+        console.error('❌ Error setting up event handlers:', error);
+      }
+    }
+
+    // Main Application Initialization
+    window.onload = () => {
+      console.log('🚀 App starting...');
+      
+      try {
+        buildQuestionsFromOrder([...Array(baseQuestions.length).keys()]);
+        console.log('✅ Questions initialized:', questions.length);
+        
+        setupEventHandlers();
+        
+        showLoginPage();
+        
+        console.log('✅ App initialized successfully');
+        
+      } catch (error) {
+        console.error('❌ Error during app initialization:', error);
+        showNotification('เกิดข้อผิดพลาดในการเริ่มระบบ', 'danger');
+      }
+    };
+
+    console.log('✅ Ford PMHV Quiz Application loaded successfully');
+  </script>
+
+</body>
+</html>
